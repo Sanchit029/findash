@@ -12,7 +12,12 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const app = express();
 
-app.use(cors());
+// allow frontend origin in prod, everything in dev
+const allowedOrigins = process.env.FRONTEND_URL
+  ? [process.env.FRONTEND_URL]
+  : "*";
+
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 // routes

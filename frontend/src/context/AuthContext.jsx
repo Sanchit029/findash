@@ -1,6 +1,9 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
+// use deployed API url in prod, empty string falls back to vite proxy in dev
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || "";
+
 const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
